@@ -11,13 +11,15 @@ const DB = require('./handlers/mongoDB');
 // })
 
 
-DB.fo('test1',{_id:'test3'}).then(function (a){
-    if (a == null){
-        console.log('Null doe')
-    }
-    console.log(a);
-})
-
+// DB.fo('test1',{_id:'test3'}).then(function (a){
+//     if (a == null){
+//         console.log('Null doe');
+//         DB.close();
+//     } else {
+//         console.log(a);
+//         DB.close();
+//     }
+// });
 
 
 

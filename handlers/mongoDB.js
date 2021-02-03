@@ -4,6 +4,7 @@ const uri = `mongodb://${config.MongoDB.mDB_User}:${config.MongoDB.mDB_Pass}@${c
 const client = new MongoClient(uri, { useUnifiedTopology: true } );
 
 
+
 //Insert One MondoDB
 module.exports.io = (collection, document) => {
     //1B0
@@ -93,3 +94,17 @@ module.exports.foad = (collection, query) => {
         return 'Error Code[mdb-1B4] Program Error/Malformed Data'
     }
 };
+
+
+//closes the client after each call
+module.exports.close = () => {
+    //1B5
+    try {
+        client.close();
+    } 
+    //1B5 Log
+    catch (err) {
+        console.log(`Error Code[mdb-1B5] | ${err}`);
+        throw new Error('Error Code[mdb-1B5] Could not close client Connection');
+    }
+}
