@@ -1,0 +1,22 @@
+{
+  "name": "sapiv2",
+  "version": "2.0.0",
+  "description": "SpectraNetworks Backend API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpectraNetworks-Inc/SAPIv2.git"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Tyree Zacharopoulos <tyree@tyree.ca>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SpectraNetworks-Inc/SAPIv2/issues"
+  },
+  "homepage": "https://github.com/SpectraNetworks-Inc/SAPIv2#readme"
+}
