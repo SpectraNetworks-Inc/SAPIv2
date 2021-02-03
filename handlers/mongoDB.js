@@ -1,10 +1,7 @@
 const { MongoClient } = require("mongodb");
 const config = require("../config");
 const uri = `mongodb://${config.MongoDB.mDB_User}:${config.MongoDB.mDB_Pass}@${config.MongoDB.mDB_Host}/?authSource=sapi`;
-
-// Create a new MongoClient
 const client = new MongoClient(uri, { useUnifiedTopology: true } );
-
 
 
 //Insert One MondoDB
@@ -44,6 +41,7 @@ module.exports.fa = (collection) => {
     }
 };
 
+
 //Find One in collection and return first document
 module.exports.fo = (collection, query) => {
     //1B2
@@ -58,6 +56,7 @@ module.exports.fo = (collection, query) => {
     }
 };
 
+
 //Find One and update in collection
 module.exports.foau = (collection, queryFind, queryReplace) => {
     //1B3
@@ -71,6 +70,7 @@ module.exports.foau = (collection, queryFind, queryReplace) => {
         return 'Error Code[mdb-1B3] Program Error/Malformed Data';
     }
 };
+
 
 //Find One and delete in collection
 module.exports.foad = (collection, query) => {
