@@ -8,9 +8,10 @@ const client = new MongoClient(uri, { useUnifiedTopology: true } );
 module.exports.io = (collection, document) => {
     //1B0
     try {
-        client.connect();
-        //2B0
-        client.db(config.MongoDB.mDB_DBName).collection(collection).insertOne(document).then(function (done){
+        //Check to see if document exists before writing
+        client.connect().then(async () => {
+            //2B0
+            await client.db(config.MongoDB.mDB_DBName).collection(collection).insertOne(document).then(function (done){
             console.log(JSON.parse(done).ops);
         }).catch(function (err){
             //2B0 Log
@@ -18,6 +19,9 @@ module.exports.io = (collection, document) => {
             return 'Error Code[mdb-2B0]';
         });
         console.log(`Inserted document into ${collection} in SAPI DB `);
+        }).then(() =>{
+            client.close();
+        });
     } 
     //1B0 Log
     catch (err) {
@@ -31,6 +35,7 @@ module.exports.io = (collection, document) => {
 module.exports.fa = (collection) => {
     //1B1
     try {
+        //Check 
         client.connect();
         return client.db(config.MongoDB.mDB_DBName).collection(collection).find({});
     } 
@@ -46,9 +51,10 @@ module.exports.fa = (collection) => {
 module.exports.fo = (collection, query) => {
     //1B2
     try {
-        client.connect();
+        //Check 
+        client.connect()
         return client.db(config.MongoDB.mDB_DBName).collection(collection).findOne(query);
-    } 
+    }
     //1B2 Log
     catch (err) {
         console.log(`Error Code[mdb-1B2] | ${err}`);
@@ -61,6 +67,7 @@ module.exports.fo = (collection, query) => {
 module.exports.foau = (collection, queryFind, queryReplace) => {
     //1B3
     try {
+        //Check
         client.connect();
         return client.db(config.MongoDB.mDB_DBName).collection(collection).findOneAndUpdate(queryFind, queryReplace);
     } 
@@ -76,6 +83,7 @@ module.exports.foau = (collection, queryFind, queryReplace) => {
 module.exports.foad = (collection, query) => {
     //1B4
     try {
+        //Check
         client.connect();
         return client.db(config.MongoDB.mDB_DBName).collection(collection).findOneAndDelete(query);
     } 
